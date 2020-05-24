@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://threejs.org/build/three.js"></script>
+    <title>ThreeJS</title>
+
+    <style>body {
+        margin: 0;
+    }
+
+    canvas {
+        width: 100%;
+        height: 100%
+    }
+    </style>
+
+</head>
+<body>
+
+    <script>
+       var scene = new THREE.Scene();
+var camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 0.1, 1000 );
+
+var renderer = new THREE.WebGLRenderer();
+renderer.setSize( window.innerWidth, window.innerHeight );
+document.body.appendChild( renderer.domElement );
+
+var geometry1 = new THREE.CylinderGeometry(0.5, 0.5, 0.5);
+var material1 = new THREE.MeshBasicMaterial( { color: 0x9999ff } );
+var cylinder = new THREE.Mesh( geometry1, material1 );
+scene.add( cylinder );
+camera.position.z = 5;
+cylinder.position.x = 4;
+
+var geometry2 = new THREE.BoxGeometry(0.5, 1, 0.5);
+var material2 = new THREE.MeshBasicMaterial( { color: 0xba66ff } );
+var cube = new THREE.Mesh( geometry2, material2 );
+scene.add( cube );
+cube.position.x = -4;
+
+var geometry3 = new THREE.ConeBufferGeometry( 0.5, 2, 10 );
+var material3 = new THREE.MeshBasicMaterial( {color: 0xfcb6f3} );
+var cone = new THREE.Mesh( geometry3, material3 );
+scene.add( cone );
+cone.position.y = 0;
+
+var animate = function () {
+	requestAnimationFrame( animate );
+	cylinder.rotation.x += 0.05;
+    cylinder.rotation.y += 0.05;
+    
+    cube.rotation.x += 0.03;
+    cube.rotation.y += 0.03;
+
+    cone.rotation.x += 0.02;
+    cone.rotation.y += 0.02;
+    
+    renderer.render( scene, camera );
+
+    
+
+};
+
+animate();
+    </script>
+
+</body>
+</html>
